@@ -240,4 +240,4 @@ if __name__ == "__main__":
         print("💾 Datos guardados y LIMPIOS en carpeta 'data/'")
         print(df.head())
     else:
-        print("\n❌ Error. Revisa las capturas de pantalla.")
+        print("\n❌ Error. Revisa las capturas de pantalla.")   
