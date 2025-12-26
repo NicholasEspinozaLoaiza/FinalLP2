@@ -2,6 +2,7 @@ import time
 import json
 import pandas as pd
 import os
+import re # Importamos expresiones regulares para limpieza profunda
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -13,87 +14,93 @@ from webdriver_manager.chrome import ChromeDriverManager
 TERMINO_BUSQUEDA = "laptop"
 TIEMPO_ESPERA = 20
 
-def limpiar_precio(precio_str):
-    if isinstance(precio_str, str):
-        # Eliminar S/, PEN, comas y espacios
-        p = precio_str.replace('\u00a0', ' ').replace('S/', '').replace('PEN', '').replace('USD', '').replace('$', '').strip()
-        p = p.replace(',', '') 
-        try:
-            return float(p)
-        except ValueError:
-            return None
-    return None
+def limpiar_texto_precio(texto_sucio):
+    """
+    Convierte 'S/\n 2\n,\n799' en 'S/ 2799' y luego en el número 2799.0
+    """
+    if not isinstance(texto_sucio, str):
+        return None, "N/A"
+    
+    # 1. Quitar saltos de línea y espacios extraños
+    texto_plano = texto_sucio.replace('\n', '').replace('\r', '').replace('\t', '').strip()
+    
+    # 2. Quitar símbolos de moneda para el cálculo matemático
+    # Eliminamos todo lo que no sea dígito o punto
+    solo_numeros = re.sub(r'[^\d.]', '', texto_plano.replace(',', '')) 
+    
+    valor_float = None
+    try:
+        valor_float = float(solo_numeros)
+    except ValueError:
+        pass
+        
+    return valor_float, texto_plano # Devolvemos el número (para restar) y el texto limpio
 
 def iniciar_driver():
     options = webdriver.ChromeOptions()
     options.add_argument('--start-maximized')
     options.add_argument('--disable-blink-features=AutomationControlled')
-    # User Agent para simular ser un usuario real y evitar bloqueos
     options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
     service = Service(ChromeDriverManager().install())
     return webdriver.Chrome(service=service, options=options)
 
 def intentar_cerrar_popups(driver):
     print("    🧹 Intentando cerrar popups...")
-    # Lista ampliada de botones de cierre comunes
     selectores = [
         "button#onetrust-accept-btn-handler",
         "div.crs-close",
         "div#cookies-consent button",
         "button[class*='closeButton']",
         "div[class*='modal'] button",
+        "div#dy-modal-contents button.close", # Popup típico de Falabella
         "span[class*='close-icon']"
     ]
     for sel in selectores:
         try:
-            # Intentamos encontrar y clickear
             btns = driver.find_elements(By.CSS_SELECTOR, sel)
             for btn in btns:
                 if btn.is_displayed():
                     driver.execute_script("arguments[0].click();", btn)
-                    print(f"       -> Popup cerrado: {sel}")
-                    time.sleep(1)
+                    time.sleep(0.5)
         except:
             pass
 
 def buscar_texto(elemento, selectores):
-    """Busca texto en hijos usando CSS"""
     for sel in selectores:
         try:
             etiqueta = elemento.find_element(By.CSS_SELECTOR, sel)
-            if etiqueta.text.strip():
-                return etiqueta.text.strip()
+            texto = etiqueta.text.strip()
+            if texto:
+                return texto
         except:
             continue
     return "N/A"
 
-# --- LÓGICA DE EXTRACCIÓN ---
+# --- LÓGICA DE EXTRACCIÓN MEJORADA ---
 def extraer_tienda(driver, nombre_tienda, url):
     datos = []
     print(f"\n📢 Procesando {nombre_tienda}... URL: {url}")
     driver.get(url)
-    time.sleep(6) # Espera inicial para carga de scripts
+    time.sleep(6) 
     
     intentar_cerrar_popups(driver)
     
     print("    ⬇️ Bajando (Scroll) para activar carga...")
-    # Hacemos scroll lento para dar tiempo a las imágenes
     for i in range(5): 
-        driver.execute_script(f"window.scrollTo(0, {(i+1)*600});")
+        driver.execute_script(f"window.scrollTo(0, {(i+1)*800});")
         time.sleep(1.5)
 
-    # ESTRATEGIA 1: BUSCAR CONTENEDORES CONOCIDOS
-    print("    🔍 Buscando productos por estructura...")
+    # BUSCAR CONTENEDORES (Agregamos los de Falabella aquí)
     selectores_contenedor = [
-        "div.product-item",                         # Coolbox
-        "div.vtex-product-summary-2-x-container",   # Plaza Vea (Nuevo VTEX)
-        "div[class*='galleryItem']",                # Plaza Vea (Genérico)
-        "div.Showcase__item",                       # Plaza Vea (Antiguo)
-        "div[class*='product-card']"                # Genérico
+        "div[id^='testId-pod-display']",            # Falabella (ID específico)
+        "div.pod-item",                             # Falabella (Clase genérica)
+        "div.vtex-product-summary-2-x-container",   # Coolbox Moderno
+        "div.product-item",                         # Coolbox Clásico
+        "div.Showcase__item",                       # Otros VTEX
+        "div[class*='galleryItem']",
     ]
     
     productos = []
-    
     for selector in selectores_contenedor:
         elems = driver.find_elements(By.CSS_SELECTOR, selector)
         if len(elems) > 0:
@@ -101,79 +108,100 @@ def extraer_tienda(driver, nombre_tienda, url):
             productos = elems
             break
             
-    # ESTRATEGIA 2 (NUCLEAR): SI FALLA, BUSCAR POR PRECIO (XPath)
     if not productos:
-        print("    ⚠️ Estructura no encontrada. Activando búsqueda profunda (XPath)...")
+        # Intento XPath (Plan B)
         try:
-            # Busca elementos que contengan "S/" y toma su contenedor padre (suponiendo estructura div)
-            # Esto es un truco avanzado para cuando cambian las clases
-            productos = driver.find_elements(By.XPATH, "//div[contains(., 'S/') and string-length(.) < 200 and count(descendant::img)=1]")
-            if len(productos) > 5: # Si encontramos varios, asumimos éxito
-                 print(f"    ✅ Productos detectados por contenido: {len(productos)} items")
-        except:
-            pass
+            productos = driver.find_elements(By.XPATH, "//div[contains(., 'S/') and string-length(.) < 400 and count(descendant::img)=1]")
+        except: pass
 
     if not productos:
-        print(f"❌ Error crítico. No se detectaron productos en {nombre_tienda}. FOTO GUARDADA.")
-        driver.save_screenshot(f"error_{nombre_tienda}.png")
+        print(f"❌ No se encontraron productos en {nombre_tienda}.")
         return []
 
-    # Extracción de datos
-    print(f"    ⚙️ Extrayendo datos de los primeros 15 productos...")
+    print(f"    ⚙️ Analizando precios de los primeros 15 productos...")
     contador = 0
     for item in productos:
         if contador >= 15: break
         try:
-            # 1. NOMBRE (Varias opciones)
+            # 1. NOMBRE (Agregamos selectores de Falabella)
             nombre = buscar_texto(item, [
-                "span[class*='productBrand']", 
-                "h3",
-                ".product-item-link",
-                "div[class*='name']",
-                ".Showcase__name"
+                "b[id^='testId-pod-display-product-title']", # Falabella Título
+                "b[class*='pod-subTitle']",                  # Falabella Subtítulo
+                "span[class*='productBrand']",               # Coolbox
+                "h3", ".product-item-link", 
+                "div[class*='name']"
             ])
             
-            # 2. PRECIO (Varias opciones)
-            precio_texto = buscar_texto(item, [
-                "div[class*='sellingPrice']",
-                "span[class*='currencyContainer']", 
-                ".price",
-                ".Showcase__salePrice"
+            # 2. PRECIOS (Texto Crudo - Agregamos Falabella)
+            precio_actual_raw = buscar_texto(item, [
+                "span[id^='testId-pod-display-price']",      # Falabella Precio
+                "div[class*='sellingPrice']",                # Coolbox
+                "span[class*='sellingPrice']",
+                ".price", ".Showcase__salePrice"
             ])
             
-            # Si falla CSS, intenta buscar cualquier texto con "S/" dentro del elemento
-            if precio_texto == "N/A":
-                texto_completo = item.text
-                if "S/" in texto_completo:
-                    # Extraer "a la fuerza" la parte del precio
-                    partes = texto_completo.split('\n')
-                    for p in partes:
-                        if "S/" in p:
-                            precio_texto = p
-                            break
+            # Para el precio antiguo, Falabella a veces usa el mismo ID pero tachado,
+            # o una clase secundaria. Agregamos opciones.
+            precio_antes_raw = buscar_texto(item, [
+                "span[class*='copy10']",                     # Falabella Texto Tachado (a veces)
+                "ol li[class*='price-old']",                 # Falabella Lista Antigua
+                "div[class*='listPrice']",                   # Coolbox
+                "span[class*='listPrice']", 
+                ".old-price", 
+                "span[style*='line-through']" 
+            ])
             
-            # 3. URL
-            try:
-                link = item.find_element(By.TAG_NAME, "a").get_attribute("href")
-            except:
-                link = "N/A"
+            # 3. LIMPIEZA PROFUNDA
+            val_actual, txt_actual_limpio = limpiar_texto_precio(precio_actual_raw)
+            val_antes, txt_antes_limpio = limpiar_texto_precio(precio_antes_raw)
             
-            # 4. IMAGEN
-            try:
-                img = item.find_element(By.TAG_NAME, "img").get_attribute("src")
-            except:
-                img = "N/A"
+            # --- PARCHE FALABELLA: A veces Falabella pone todos los precios juntos ---
+            # Si no encontró precio con selectores, buscamos en el texto completo
+            if val_actual is None:
+                numeros = re.findall(r'S/\s*[\d,]+(?:\.\d+)?', item.text)
+                if numeros:
+                    # Limpiamos todos los encontrados
+                    precios_limpios = []
+                    for n in numeros:
+                        v, t = limpiar_texto_precio(n)
+                        if v: precios_limpios.append(v)
+                    
+                    if precios_limpios:
+                        precios_limpios.sort(reverse=True) # Mayor a menor
+                        # Asumimos: Mayor = Antes, Menor = Actual
+                        if len(precios_limpios) > 1:
+                            val_antes = precios_limpios[0]
+                            val_actual = precios_limpios[-1]
+                            txt_antes_limpio = f"S/ {val_antes:,.2f}"
+                            txt_actual_limpio = f"S/ {val_actual:,.2f}"
+                        else:
+                            val_actual = precios_limpios[0]
+                            txt_actual_limpio = f"S/ {val_actual:,.2f}"
 
-            # VALIDACIÓN Y GUARDADO
-            if nombre != "N/A" and precio_texto != "N/A" and len(nombre) > 3:
-                # Limpiamos el precio
-                p_num = limpiar_precio(precio_texto)
-                
+            # Si no hay precio tachado ("N/A"), asumimos que es igual al actual
+            if val_antes is None:
+                val_antes = val_actual
+                txt_antes_limpio = txt_actual_limpio
+
+            # 4. CÁLCULO DESCUENTO
+            descuento = "0%"
+            if val_antes and val_actual and val_antes > val_actual:
+                diff = val_antes - val_actual
+                porc = (diff / val_antes) * 100
+                descuento = f"{porc:.0f}%"
+
+            # 5. URL e IMAGEN
+            try: link = item.find_element(By.TAG_NAME, "a").get_attribute("href")
+            except: link = "N/A"
+            try: img = item.find_element(By.TAG_NAME, "img").get_attribute("src")
+            except: img = "N/A"
+
+            if nombre != "N/A" and val_actual is not None:
                 datos.append({
-                    "nombre": nombre,
-                    "precio_antes": precio_texto, # Para cumplir formato
-                    "precio_despues": precio_texto,
-                    "descuento": "0%",
+                    "nombre": nombre.replace('\n', ' '), 
+                    "precio_antes": txt_antes_limpio,    
+                    "precio_despues": txt_actual_limpio, 
+                    "descuento": descuento,
                     "url_image": img,
                     "tienda": nombre_tienda,
                     "url": link
@@ -188,11 +216,13 @@ if __name__ == "__main__":
     driver = iniciar_driver()
     all_data = []
     
-    # 1. COOLBOX
+    # 1. COOLBOX (Se mantiene igual)
     all_data.extend(extraer_tienda(driver, "Coolbox", f"https://www.coolbox.pe/{TERMINO_BUSQUEDA}"))
     
-    # 2. PLAZA VEA (Ruta directa de categoría)
-    all_data.extend(extraer_tienda(driver, "Plaza Vea", f"https://www.plazavea.com.pe/{TERMINO_BUSQUEDA}"))
+    # 2. FALABELLA (Reemplazamos a Plaza Vea)
+    # Usamos la URL directa de categoría que suele ser más estable
+    url_falabella = "https://www.falabella.com.pe/falabella-pe/category/cat40712/Laptops"
+    all_data.extend(extraer_tienda(driver, "Falabella", url_falabella))
     
     driver.quit()
     
@@ -201,15 +231,13 @@ if __name__ == "__main__":
         
         if not os.path.exists('data'): os.makedirs('data')
         
-        # CSV
         df = pd.DataFrame(all_data)
         df.to_csv('data/dinamico_ofertas_filtradas.csv', index=False, encoding='utf-8')
         
-        # JSON
         with open('data/dinamico_ofertas.json', 'w', encoding='utf-8') as f:
             json.dump(all_data, f, ensure_ascii=False, indent=4)
             
-        print("💾 Datos guardados en carpeta 'data/' (CSV y JSON listos para Werlen)")
-        print(df.head()) # Muestra rápida
+        print("💾 Datos guardados y LIMPIOS en carpeta 'data/'")
+        print(df.head())
     else:
         print("\n❌ Error. Revisa las capturas de pantalla.")   
