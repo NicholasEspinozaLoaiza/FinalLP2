@@ -212,4 +212,4 @@ if __name__ == "__main__":
         print("💾 Datos guardados en carpeta 'data/' (CSV y JSON listos para Werlen)")
         print(df.head()) # Muestra rápida
     else:
-        print("\n❌ Error. Revisa las capturas de pantalla.")
+        print("\n❌ Error. Revisa las capturas de pantalla.")   
