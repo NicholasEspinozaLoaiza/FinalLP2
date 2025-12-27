@@ -1,0 +1,209 @@
+[
+    {
+        "nombre": "APPLE",
+        "precio_antes": "S/ 2,999",
+        "precio_despues": "S/ 2,799",
+        "descuento": "7%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/509581-300-300?v=639015029373900000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-apple-macbook-air-133-retina-m1-8-256gb-8gb-mgn63la/p"
+    },
+    {
+        "nombre": "APPLE",
+        "precio_antes": "S/ 4,599",
+        "precio_despues": "S/ 3,599",
+        "descuento": "22%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/509610-300-300?v=639015035781600000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/macbook-air-13-6-chip-m2-de-apple-256gb-16gb-mc7x4ea/p"
+    },
+    {
+        "nombre": "APPLE",
+        "precio_antes": "S/ 5,129",
+        "precio_despues": "S/ 3,779",
+        "descuento": "26%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/503559-300-300?v=638997924245930000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/macbook-air-13--256gb-16gb-ram-chip-m4-bateria-18-horas-carga-rapida-midnight-og52642sde/p"
+    },
+    {
+        "nombre": "ASUS",
+        "precio_antes": "S/ 3,799",
+        "precio_despues": "S/ 3,499",
+        "descuento": "8%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/508006-300-300?v=639011528011300000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/asus-rog-xbox-ally-x-2025-24gb-1tb-negro-90nv00h2-m00490/p"
+    },
+    {
+        "nombre": "LENOVO",
+        "precio_antes": "S/ 2,599",
+        "precio_despues": "S/ 1,812",
+        "descuento": "30%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/464031-300-300?v=638859441100670000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-hp-15fc0012la-amd-ryzen-7-7730u-16gb-ram-512gb-ssd-15-6-fhd-freedos-100435988/p"
+    },
+    {
+        "nombre": "LENOVO",
+        "precio_antes": "S/ 3,499",
+        "precio_despues": "S/ 2,899",
+        "descuento": "17%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/510413-300-300?v=639016000895500000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-gamer-lenovo-loq-15arp9-15-6-r5-7235hs-512gb-12g-rtx3050-win11-gris-83jc005rlm/p"
+    },
+    {
+        "nombre": "DELL",
+        "precio_antes": "S/ 2,469",
+        "precio_despues": "S/ 1,799",
+        "descuento": "27%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/503633-300-300?v=638997938998370000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-dell-inspiron-3520-intel-core-i5-1235u-16gb-ram-512gb-ssd-15-6-fhd-windows-11-100422434/p"
+    },
+    {
+        "nombre": "LENOVO",
+        "precio_antes": "S/ 2,249",
+        "precio_despues": "S/ 1,799",
+        "descuento": "20%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/510451-300-300?v=639016019715500000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-lenovo-ideapad-slim-3-15-6-intel-core-i5-12450h-512gb-8gb-win11-gris-83er001alm/p"
+    },
+    {
+        "nombre": "ASUS",
+        "precio_antes": "S/ 3,699",
+        "precio_despues": "S/ 3,699",
+        "descuento": "0%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/338528-300-300?v=638417234421970000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/lapto-asus-tuf-gaming-intel-core-i5-12500h-90nr0gw1-m001d0/p"
+    },
+    {
+        "nombre": "LENOVO",
+        "precio_antes": "S/ 2,950",
+        "precio_despues": "S/ 1,649",
+        "descuento": "44%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/349368-300-300?v=638820731077730000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-lenovo-ideapad-slim-3-15iah8-i5-12450h--16gb-ram-ddr5--512gb-ssd--15-6--fhd--wind--83er001dlm-100420340/p"
+    },
+    {
+        "nombre": "HP",
+        "precio_antes": "S/ 1,599",
+        "precio_despues": "S/ 989",
+        "descuento": "38%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/486221-300-300?v=639015014563770000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-hp-255-g10-15-6-hd-amd-athlon-7120u-256gb-ssd-8gb-ram-win-11-pro-teclado-en-espanol-gris-100426187/p"
+    },
+    {
+        "nombre": "ASUS",
+        "precio_antes": "S/ 3,289",
+        "precio_despues": "S/ 3,289",
+        "descuento": "0%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/406676-300-300?v=638697016555770000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-asus-tuf-gaming-a15-15-6-ryzen-5-512gb-8gb-rtx2050-90nr0je7-m002l0/p"
+    },
+    {
+        "nombre": "LENOVO",
+        "precio_antes": "S/ 5,169",
+        "precio_despues": "S/ 5,169",
+        "descuento": "0%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/503448-300-300?v=638997901794970000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-lenovo-loq--15-6--fhd-ips---core-i7-13650hx-4-90ghz--16gb-ddr5-512gb-ssd--video-rtx-4050-6gb--freedos-100436218/p"
+    },
+    {
+        "nombre": "LENOVO",
+        "precio_antes": "S/ 4,580",
+        "precio_despues": "S/ 3,099",
+        "descuento": "32%",
+        "url_image": "https://coolboxpe.vtexassets.com/arquivos/ids/503456-300-300?v=638997901455530000&width=300&height=300&aspect=true",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-lenovo-loq--15-6--fhd-ips-core-i5-12450hx-4-40ghz-8gb-ddr5-512gb-ssd-video-rtx-3050-6gb-freedos-100427378/p"
+    },
+    {
+        "nombre": "ASUS",
+        "precio_antes": "S/ 4,969",
+        "precio_despues": "S/ 4,399",
+        "descuento": "11%",
+        "url_image": "N/A",
+        "tienda": "Coolbox",
+        "url": "https://www.coolbox.pe/laptop-asus-m3401qc-km160w-14-ryzen-5-512gb-8gb-90nb0vf2-m003f0/p"
+    },
+    {
+        "nombre": "Laptop TUF GAMING A16 R7 7445Hs 512Ssd 16GB Rtx 4050",
+        "precio_antes": "S/ 4,699.00",
+        "precio_despues": "S/ 3,899.00",
+        "descuento": "17%",
+        "url_image": "https://media.falabella.com.pe/tottusPE/43567111_1/width=240,height=240,quality=70,format=webp,fit=pad",
+        "tienda": "Falabella",
+        "url": "https://www.falabella.com.pe/falabella-pe/product/147131184/nb-tuf-r7-7445hs-512ssd-16-gb-rtx-4050/147131185?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522category%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522pe%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc2Njc5NjI2MzYwMg%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522v2_CZv99cscMHWb6Wi3wFAZ_GagsWhvx4FP5T1x3v6eq3O8yIWrq69anyFAsEL84CA6vEyEcicksCLgWKK2xmeQu8JGeklyW-owvAQ85oI53y5AEv2AV6iyU-C2FuoTOLsYsL35ibCv7h9tUSknRFHAP-cccL5kLZM0Kefp8HQ9s4c%253D_ark19b5d4371453e60917%2522%252C%2522slot%2522%253A1%252C%2522signal%2522%253Anull%252C%2522providerName%2522%253A%2522mabaya%2522%257D%257D"
+    },
+    {
+        "nombre": "Laptop 15-fd0271la  Intel Core i7  16 GB 512 GB SSD  15.6¿  FHD Windows 11 Home",
+        "precio_antes": "S/ 3,449.00",
+        "precio_despues": "S/ 2,399.00",
+        "descuento": "30%",
+        "url_image": "https://media.falabella.com.pe/falabellaPE/20936201_01/width=240,height=240,quality=70,format=webp,fit=pad",
+        "tienda": "Falabella",
+        "url": "https://www.falabella.com.pe/falabella-pe/product/20936201/Laptop-HP-15-fd0271la-Intel-Core-i7-16-GB-512-GB-SSD-15.6-FHD-Windows-11-Home/20936201?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522category%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522pe%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc2Njc5NjI2MzYwMg%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522v2_GCozxohM2ia3nwx6hZBWYmagsWhvx4FP5T1x3v6eq3O8yIWrq69anyFAsEL84CA6m1VH-HBwYTIkaIm6f5pCfsJGeklyW-owvAQ85oI53y5i3Le4ZDeSF6mNLCYS2JQzBkPTfPEPgrSvXArXBZnm-g%253D%253D_ark19b5d4371453e60917%2522%252C%2522slot%2522%253A2%252C%2522signal%2522%253Anull%252C%2522providerName%2522%253A%2522mabaya%2522%257D%257D"
+    },
+    {
+        "nombre": "Gamer Rog Zephyrus G16 Intel Core Ultra 9 Rtx5070ti 32gb Ram 1tb Ssd Gu605cr-qr149w 16\" Oled (TGP 115W)",
+        "precio_antes": "S/ 14,999.00",
+        "precio_despues": "S/ 13,199.00",
+        "descuento": "12%",
+        "url_image": "https://media.falabella.com.pe/falabellaPE/883495601_1/width=240,height=240,quality=70,format=webp,fit=pad",
+        "tienda": "Falabella",
+        "url": "https://www.falabella.com.pe/falabella-pe/product/883495601/Gamer-Rog-Zephyrus-G16-Intel-Core-Ultra-9-Rtx5070ti-32gb-Ram-1tb-Ssd-Gu605cr-qr149w-16-Oled-(TGP-115W)/883495601"
+    },
+    {
+        "nombre": "Laptop TUF Gaming F16 Rtx3050 Intel Core 5 210h 8gb 512gbssd Fx607vj-rl011w 16\" Fhd",
+        "precio_antes": "S/ 4,299.00",
+        "precio_despues": "S/ 2,699.00",
+        "descuento": "37%",
+        "url_image": "https://media.falabella.com.pe/falabellaPE/883569121_1/width=240,height=240,quality=70,format=webp,fit=pad",
+        "tienda": "Falabella",
+        "url": "https://www.falabella.com.pe/falabella-pe/product/883569121/Laptop-Asus-TUF-Gaming-F16-Rtx3050-Intel-Core-5-210h-8gb-512gbssd-Fx607vj-rl011w-16-Fhd/883569121"
+    },
+    {
+        "nombre": "Laptop Gamer Tuf A16 Amd Ryzen 7 7445hs 16gb Ram 512ssd Rtx4050 16\" Fa607nug-rl116w Fhd+ Nvidia Geforce",
+        "precio_antes": "S/ 5,499.00",
+        "precio_despues": "S/ 3,799.00",
+        "descuento": "31%",
+        "url_image": "https://media.falabella.com.pe/falabellaPE/883630326_1/width=240,height=240,quality=70,format=webp,fit=pad",
+        "tienda": "Falabella",
+        "url": "https://www.falabella.com.pe/falabella-pe/product/883630326/Laptop-Gamer-Asus-Tuf-A16-Amd-Ryzen-7-7445hs-16gb-Ram-512ssd-Rtx4050-16-Fa607nug-rl116w-Fhd+-Nvidia-Geforce/883630326"
+    },
+    {
+        "nombre": "Laptop Predator Helios Neo 16 Ai Intel® Core¿ Ultra 9 Processor 275hx 32 Gb 1 Tb Ssd Nvidia® Geforce Rtx¿ 5070 Ti Wqxga (2560 X 1600)",
+        "precio_antes": "S/ 15,999.00",
+        "precio_despues": "S/ 10,999.00",
+        "descuento": "31%",
+        "url_image": "https://media.falabella.com.pe/falabellaPE/883523964_1/width=240,height=240,quality=70,format=webp,fit=pad",
+        "tienda": "Falabella",
+        "url": "https://www.falabella.com.pe/falabella-pe/product/883523963/laptop-acer-predator-helios-neo-16-ai-intel-core-ultra-9-processor-275hx-32-gb-1-tb-ssd-nvidia-geforce-rtx-5070-ti-wqxga-2560-x-1600/883523964"
+    },
+    {
+        "nombre": "Laptop V15 G4 AMN, AMD Ryzen 3-7320U 8GB RAM 256GB SSD 15 6 FHD Windows 11 + Mouse",
+        "precio_antes": "S/ 4,000.00",
+        "precio_despues": "S/ 1,149.00",
+        "descuento": "71%",
+        "url_image": "https://media.falabella.com.pe/falabellaPE/147716834_01/width=240,height=240,quality=70,format=webp,fit=pad",
+        "tienda": "Falabella",
+        "url": "https://www.falabella.com.pe/falabella-pe/product/147716833/Laptop-Lenovo-V15-G4-AMN,-AMD-Ryzen-3-7320U-8GB-RAM-256GB-SSD-15-6-FHD-Windows-11-+-Mouse/147716834?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522category%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522pe%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc2Njc5NjI2MzYwMg%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522v2_LZbRVa-b5KJ2uoN2oQpyaWagsWhvx4FP5T1x3v6eq3O8yIWrq69anyFAsEL84CA6H_VFBejPTuPSGRJ1x_G0XMJGeklyW-owvAQ85oI53y4P4WurLgHfeIy7lCHkCb0gsL35ibCv7h9tUSknRFHAP-cccL5kLZM0Kefp8HQ9s4c%253D_ark19b5d4371453e60917%2522%252C%2522slot%2522%253A7%252C%2522signal%2522%253Anull%252C%2522providerName%2522%253A%2522mabaya%2522%257D%257D"
+    },
+    {
+        "nombre": "Probook 440 G8 I7 11va 32gb RAM 1tb SSD IPS Reacondicionada 1 Año Garantía + COOLER",
+        "precio_antes": "S/ 2,590.00",
+        "precio_despues": "S/ 1,990.00",
+        "descuento": "23%",
+        "url_image": "https://media.falabella.com.pe/falabellaPE/145298916_01/width=240,height=240,quality=70,format=webp,fit=pad",
+        "tienda": "Falabella",
+        "url": "https://www.falabella.com.pe/falabella-pe/product/145298915/Hp-Probook-440-G8-I7-11va-32gb-RAM-1tb-SSD-IPS-Reacondicionada-1-Ano-Garantia-+-COOLER/145298916?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522category%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522pe%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc2Njc5NjI2MzYwMg%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522v2_ytJD-xSSp-nFdRI14ChkI2agsWhvx4FP5T1x3v6eq3O8yIWrq69anyFAsEL84CA68e75WNTRFkXSgQJ2IkiAw8JGeklyW-owvAQ85oI53y5ucm2s5_AqH0znyn_f4MB7sL35ibCv7h9tUSknRFHAP-cccL5kLZM0Kefp8HQ9s4c%253D_ark19b5d4371453e60917%2522%252C%2522slot%2522%253A8%252C%2522signal%2522%253Anull%252C%2522providerName%2522%253A%2522mabaya%2522%257D%257D"
+    }
+]
